@@ -1,17 +1,16 @@
 language: node_js
-sudo: false
-cache: yarn
-node_js: 9
+node_js:
+  - "stable"
+cache:
+  directories:
+  - node_modules
+script:
+  - yarn test
+  - yarn run build
 deploy:
   provider: pages
-  skip-cleanup: true
+  skip_cleanup: true
+  github_token: $github_token
   local_dir: build
-  github-token:
-    secure: uMV+OCgEV2OUWyucFbVEyl1FrgX+8PWExPQcQ5Uvl80CDFzmYYijUxZ6JalKbXg/3omRCX+Q7LCzcKEbl+qzvSV2cVbg2AnsPMXePysmalgDzoliCa3M5yuKTMxJpdAm48DlH+yVmXqV1KAnVSkuiyw5APnaChvrnaJCv2KvTWxqe8sOs0k1u+FUfXXj5Gosq3Ucg0JXXA/KZw77XWZW8kDGURaKqNEBs54Mfw1C40MqREiWF4H5H6kXGaq11Lj1Eok/aut6PWtXkj+CowNuUElgGD8RrUtvOAf1ig5KNTM5HIN5ChJM896yD9zF0EEJ6EKqXZRzQj5hQFRj4GxVm0Lyin064gY7WpHYfFhw41ya+CnmD2cqPgSLsJwrJGsWVU2lZRTXuThplyocAQWlQBumjRRf4GQuBhU1FjIQWFUNwlWIdHBh6fwQua1bAQvKtnPPagiu2mZrDsgEGdsxvIM8eIDH3ZfM+dxIaU8X3pPELKFO9TNDfE8j6v0j2AjOahc9abMkgWOSqx0D4Pxk0Zm8gYrwnA3d7/CMSEI9sJ1+F5LlnIKc4HaLFKhydZ3NOCAtpqBt5OQgVjIlcGdH7sfTZ7W4QpS2pcivVkZqrBcJ9HiaiXEgum6iYAKwYF23MjHv70k9Elbq5yibgBkOWggjhtVaSOlsf4Vj4GB6zFU=
-  pkeep-history: true
   on:
     branch: master
-    tags: true
-env:
-  global:
-    secure: chjLYVl7GVvBU/GanYR+jbceNu+3AnDJXyNgxrJvAflcejB7aXB+deFvdU4IQ+SFypusYQPpAENpLgOnOP/O4CSxCFOCHBCzmL4dwl0tH7C+P7MZ/HAT5+fxZBu9PHdtHWo9Q+w1hKcCSAHel+DwPk/CeHYJQv/ZusiE12LCarpAmPsLHBkUAhcru+7vTpvzHT3oW1xwjH2XS0/9l6t2xbKSoYOR7qvKzsGFP3TMoIA+AmtvoigaO+Nz34rqM2Wzb0DXuLGE5tbQL0VBv4wJaq88p1TesienUDm8m61eBNbg5QsmaigwzikNYUpqGg5KYcctY8zMtyk6TWPppV3WWdBotcgeLqk8cEr+boVfd20Wi06aBHG7ah6ihOQTsICinZTez06NjLa79l+YiabsnYCMTOvq+OJgygClMAHQJy5bLorwOYsFGfdCQAF884J6KIy2E5ex5YjYjbvkAQPHyS0QT7/XiRmmNae0VnoLvMXrOs9cOY3rHX/nuiMNTOa531se8j/mLj+tOFSuhEzMDIcktLO3mRpp4vM4mai1TkfT5P6tWDc1uS3yYw2C0X01Q0lkNkCpbQlXty6Hrk31jAf6kvdDNylXqqXgpwdvl/L6rSYQBCJM9uCRABj+p6mb1pgSFg6EZogUEATcbvZ5W2lPkh61aMlBh7Ged2wXbUo=
