@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Form = styled.form`
   width: 100%;
-  max-width: 400px;
+  max-width: 350px;
   margin: 20px;
 `;
 
@@ -26,7 +26,7 @@ const Input = styled.input`
   }
 `;
 
-const Button = styled.input`
+const Button = styled.button`
   display: block;
   width: 200px;
   height: 40px;
@@ -51,7 +51,7 @@ const Button = styled.input`
 const ImageForm = props => (
   <Form onSubmit={props.onSubmit}>
     <Input type="nubmer" value={props.value} onChange={props.onChange} />
-    <Button type="submit" value="Get inspired" />
+    <Button type="submit">Get inspired</Button>
   </Form>
 )
 

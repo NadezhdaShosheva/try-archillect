@@ -5,6 +5,7 @@
   "homepage": "https://nadezhdakharchuk.github.io/try-archillect",
   "dependencies": {
     "axios": "^0.18.0",
+    "jest": "^23.6.0",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-scripts": "2.1.1",

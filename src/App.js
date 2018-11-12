@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ImageForm from './components/ImageForm';
 import DefaultImage from './components/DefaultImage';
+import Result from './components/Result';
+import GetImage from './services/getImage';
 import styled from 'styled-components';
 import image from './default.gif';
 
@@ -13,26 +15,43 @@ const Wrapper = styled.div`
 `;
 
 class App extends Component {
-    state = {
-      imageUrl: image,
-      value: '',
-    };
+  state = {
+    defaultImage: image,
+    resultImage: '',
+    value: '',
+    hasResult: false,
+  };
 
   handleChange = (event) => {
     this.setState({value: event.target.value});
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(this.state.value);
+    try {
+      const resultImageUrl = await GetImage(this.state.value);
+      this.setState({
+        resultImage: resultImageUrl.url,
+        hasResult: true,
+      });
+    } catch (error) {
+      this.setState({
+        hasResult: false,
+      });
+    }
   }
 
   render() {
     return (
       <Wrapper>
-        <DefaultImage
-          imageUrl={this.state.imageUrl}
-        />
+        { this.state.hasResult ?
+          <Result
+            resultImage={this.state.resultImage}
+          /> :
+          <DefaultImage
+            defaultImage={this.state.defaultImage}
+          />
+        }
         <ImageForm 
           value={this.value}
           onSubmit={this.handleSubmit}
