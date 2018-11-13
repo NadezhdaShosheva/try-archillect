@@ -22,7 +22,10 @@ describe('getImage', () => {
         ],
       },
     };
-    mockAxios.get = jest.fn(() => new Promise((resolve) => { resolve(expectedResponse); }));
+    mockAxios.get = jest.fn(() => 
+      new Promise((resolve) => { 
+        resolve(expectedResponse); 
+      }));
 
     // Act
     const actualImageResponse = await getImage(expectedImageId);
@@ -43,7 +46,10 @@ describe('getImage', () => {
         error: `The id ${expectedImageId} should be between 1 and ${expectedLatestImageId}`,
       }
     };
-    mockAxios.get = jest.fn(() => new Promise((resolve) => { resolve(expectedResponse); }));
+    mockAxios.get = jest.fn(() => 
+      new Promise((resolve) => { 
+        resolve(expectedResponse); 
+      }));
 
     // Act
     const actualError = await getImage(expectedImageId);
@@ -51,6 +57,28 @@ describe('getImage', () => {
     // Assets
     expect(actualError).toEqual(expectedError);
     expect(mockAxios.get).toHaveBeenCalledWith(expectedGetPath);
+  });
 
-  })
+  test('getImage - rejected', async () => {
+    // Arrange
+    const expectedImageId = 456;
+    const expectedError = new Error('Something went wrong');
+    const expectedGetPath = `${BASE_URL}/${expectedImageId}`;
+    
+    mockAxios.get = jest.fn(() => 
+      new Promise((resolve, reject) => { 
+        reject(expectedError); 
+      }));
+
+    try {
+      // Act
+      await getImage(expectedImageId);
+      throw new Error('Did not throw error');
+    } catch (actualError) {
+      // Arrange
+      expect(actualError).toEqual(expectedError);
+      expect(mockAxios.get).toHaveBeenCalledWith(expectedGetPath);
+    }
+
+  });
 });
