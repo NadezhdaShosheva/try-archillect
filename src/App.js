@@ -22,34 +22,32 @@ class App extends Component {
     hasResult: false,
   };
 
-  handleChange = (event) => {
-    this.setState({ value: event.target.value });
-  }
-
-  handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const value = this.state;
-      const resultImageUrl = await GetImage(value);
-      this.setState({
-        resultImage: resultImageUrl.url,
-        hasResult: true,
-      });
-    } catch (error) {
-      this.setState({
-        hasResult: false,
-      });
-    }
-  }
-
   render() {
+    const handleChange = (event) => {
+      this.setState({ value: event.target.value });
+    };
+
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      try {
+        const { value } = this.state;
+        const resultImageUrl = await GetImage(value);
+        this.setState({
+          resultImage: resultImageUrl.url,
+          hasResult: true,
+        });
+      } catch (error) {
+        this.setState({
+          hasResult: false,
+        });
+      }
+    };
+
     const {
       hasResult,
       resultImage,
       defaultImage,
       value,
-      handleSubmit,
-      handleChange,
     } = this.state;
 
     return (

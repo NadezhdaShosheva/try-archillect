@@ -56,8 +56,8 @@ const ImageForm = (props) => {
     <Form onSubmit={onSubmit}>
       <Input
         type="nubmer"
-        value={value}
         onChange={onChange}
+        defaultValue={value}
       />
       <Button type="submit">Get inspired</Button>
     </Form>
@@ -67,7 +67,11 @@ const ImageForm = (props) => {
 ImageForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.string,
+};
+
+ImageForm.defaultProps = {
+  value: '',
 };
 
 export default ImageForm;
