@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Form = styled.form`
   width: 100%;
@@ -48,11 +49,25 @@ const Button = styled.button`
   }
 `;
 
-const ImageForm = props => (
-  <Form onSubmit={props.onSubmit}>
-    <Input type="nubmer" value={props.value} onChange={props.onChange} />
-    <Button type="submit">Get inspired</Button>
-  </Form>
-)
+const ImageForm = (props) => {
+  const { onSubmit, value, onChange } = props;
+
+  return (
+    <Form onSubmit={onSubmit}>
+      <Input
+        type="nubmer"
+        value={value}
+        onChange={onChange}
+      />
+      <Button type="submit">Get inspired</Button>
+    </Form>
+  );
+};
+
+ImageForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.number.isRequired,
+};
 
 export default ImageForm;

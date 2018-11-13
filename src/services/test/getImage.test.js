@@ -18,14 +18,13 @@ describe('getImage', () => {
         imageSource: expectedImageUrl,
         original: `http://archillect.com/${expectedImageId}`,
         sourceLinks: [
-          'https://www.google.com/searchbyimage?safe=off&image_url=http://41.media.tumblr.com/8381c9d45c8c99f17faa198cf57b9727/tumblr_n28zfgPQRT1r0zs8io1_1280.jpg'   
+          'https://www.google.com/searchbyimage?safe=off&image_url=http://41.media.tumblr.com/8381c9d45c8c99f17faa198cf57b9727/tumblr_n28zfgPQRT1r0zs8io1_1280.jpg',
         ],
       },
     };
-    mockAxios.get = jest.fn(() => 
-      new Promise((resolve) => { 
-        resolve(expectedResponse); 
-      }));
+    mockAxios.get = jest.fn(() => new Promise((resolve) => {
+      resolve(expectedResponse);
+    }));
 
     // Act
     const actualImageResponse = await getImage(expectedImageId);
@@ -44,12 +43,11 @@ describe('getImage', () => {
     const expectedResponse = {
       data: {
         error: `The id ${expectedImageId} should be between 1 and ${expectedLatestImageId}`,
-      }
+      },
     };
-    mockAxios.get = jest.fn(() => 
-      new Promise((resolve) => { 
-        resolve(expectedResponse); 
-      }));
+    mockAxios.get = jest.fn(() => new Promise((resolve) => {
+      resolve(expectedResponse);
+    }));
 
     // Act
     const actualError = await getImage(expectedImageId);
@@ -64,11 +62,10 @@ describe('getImage', () => {
     const expectedImageId = 456;
     const expectedError = new Error('Something went wrong');
     const expectedGetPath = `${BASE_URL}/${expectedImageId}`;
-    
-    mockAxios.get = jest.fn(() => 
-      new Promise((resolve, reject) => { 
-        reject(expectedError); 
-      }));
+
+    mockAxios.get = jest.fn(() => new Promise((resolve, reject) => {
+      reject(expectedError);
+    }));
 
     try {
       // Act
@@ -79,6 +76,5 @@ describe('getImage', () => {
       expect(actualError).toEqual(expectedError);
       expect(mockAxios.get).toHaveBeenCalledWith(expectedGetPath);
     }
-
   });
 });

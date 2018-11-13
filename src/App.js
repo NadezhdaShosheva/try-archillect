@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import ImageForm from './components/ImageForm';
 import DefaultImage from './components/DefaultImage';
 import Result from './components/Result';
 import GetImage from './services/getImage';
-import styled from 'styled-components';
 import image from './default.gif';
 
 const Wrapper = styled.div`
@@ -23,13 +23,14 @@ class App extends Component {
   };
 
   handleChange = (event) => {
-    this.setState({value: event.target.value});
+    this.setState({ value: event.target.value });
   }
 
   handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const resultImageUrl = await GetImage(this.state.value);
+      const value = this.state;
+      const resultImageUrl = await GetImage(value);
       this.setState({
         resultImage: resultImageUrl.url,
         hasResult: true,
@@ -42,20 +43,33 @@ class App extends Component {
   }
 
   render() {
+    const {
+      hasResult,
+      resultImage,
+      defaultImage,
+      value,
+      handleSubmit,
+      handleChange,
+    } = this.state;
+
     return (
       <Wrapper>
-        { this.state.hasResult ?
-          <Result
-            resultImage={this.state.resultImage}
-          /> :
-          <DefaultImage
-            defaultImage={this.state.defaultImage}
-          />
+        { hasResult
+          ? (
+            <Result
+              resultImage={resultImage}
+            />
+          )
+          : (
+            <DefaultImage
+              defaultImage={defaultImage}
+            />
+          )
         }
-        <ImageForm 
-          value={this.value}
-          onSubmit={this.handleSubmit}
-          onChange={this.handleChange}
+        <ImageForm
+          value={value}
+          onSubmit={handleSubmit}
+          onChange={handleChange}
         />
       </Wrapper>
     );

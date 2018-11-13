@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const ResultImage = styled.div`
   height: 400px;
@@ -12,10 +13,21 @@ const ResultImage = styled.div`
   }
 `;
 
-const Result = props => (
-  <ResultImage>
-    <img src={props.resultImage} alt="default" />
-  </ResultImage>
-)
+const Result = (props) => {
+  const { resultImage } = props;
+
+  return (
+    <ResultImage>
+      <img
+        src={resultImage}
+        alt="default"
+      />
+    </ResultImage>
+  );
+};
+
+Result.propTypes = {
+  resultImage: PropTypes.string.isRequired,
+};
 
 export default Result;
