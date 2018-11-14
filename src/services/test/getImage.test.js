@@ -41,7 +41,7 @@ describe('getImage', () => {
     const expectedGetPath = `${BASE_URL}/${expectedImageId}`;
     const expectedError = { latestImageId: expectedLatestImageId };
     const expectedResponse = {
-      data: {
+      error: {
         error: `The id ${expectedImageId} should be between 1 and ${expectedLatestImageId}`,
       },
     };
@@ -50,10 +50,10 @@ describe('getImage', () => {
     }));
 
     // Act
-    const actualError = await getImage(expectedImageId);
+    const actualResponse = await getImage(expectedImageId);
 
     // Assets
-    expect(actualError).toEqual(expectedError);
+    expect(actualResponse).toEqual(expectedResponse);
     expect(mockAxios.get).toHaveBeenCalledWith(expectedGetPath);
   });
 
