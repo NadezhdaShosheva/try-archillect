@@ -39,11 +39,11 @@ describe('getImage', () => {
     const expectedImageId = 12345678;
     const expectedLatestImageId = 199565;
     const expectedGetPath = `${BASE_URL}/${expectedImageId}`;
-    const expectedError = { latestImageId: expectedLatestImageId };
+    const expectedError = {
+      error: `The id ${expectedImageId} should be between 1 and ${expectedLatestImageId}`,
+    };
     const expectedResponse = {
-      data: {
-        error: `The id ${expectedImageId} should be between 1 and ${expectedLatestImageId}`,
-      },
+      data: expectedError,
     };
     mockAxios.get = jest.fn(() => new Promise((resolve) => {
       resolve(expectedResponse);

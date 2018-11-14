@@ -55,7 +55,9 @@ const ImageForm = (props) => {
   return (
     <Form onSubmit={onSubmit}>
       <Input
-        type="nubmer"
+        type="number"
+        pattern="[0-9]*"
+        inputMode="numeric"
         onChange={onChange}
         defaultValue={value}
       />

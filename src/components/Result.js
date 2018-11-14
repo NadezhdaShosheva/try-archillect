@@ -14,20 +14,28 @@ const ResultImage = styled.div`
 `;
 
 const Result = (props) => {
-  const { resultImage } = props;
+  const { resultImage, hasCounter } = props;
 
   return (
     <ResultImage>
-      <img
-        src={resultImage}
-        alt="default"
-      />
+      { hasCounter
+        ? (
+          <p>Counter</p>
+        )
+        : (
+          <img
+            src={resultImage}
+            alt="default"
+          />
+        )
+      }
     </ResultImage>
   );
 };
 
 Result.propTypes = {
   resultImage: PropTypes.string.isRequired,
+  hasCounter: PropTypes.bool.isRequired,
 };
 
 export default Result;

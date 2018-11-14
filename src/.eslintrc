@@ -5,6 +5,7 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "no-undef": "off",
     "global-require": "warn",
+    "no-prototype-builtins": "off",
     "jsx-a11y/label-has-for": [ 1, {
       "components": [ "Label" ],
       "required": {
