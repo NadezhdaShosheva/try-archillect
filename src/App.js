@@ -20,6 +20,7 @@ class App extends Component {
     resultImage: '',
     value: '',
     hasResult: false,
+    hasCounter: false,
   };
 
   render() {
@@ -31,20 +32,39 @@ class App extends Component {
       event.preventDefault();
       try {
         const { value } = this.state;
-        const resultImageUrl = await GetImage(value);
-        this.setState({
-          resultImage: resultImageUrl.url,
-          hasResult: true,
-        });
+        const resultResponse = await GetImage(value);
+        const responseImage = resultResponse.hasOwnProperty('url');
+        console.log(responseImage);
+        if (responseImage) {
+          this.setState({
+            resultImage: resultResponse.url,
+            hasResult: true,
+            hasCounter: false,
+          });
+        } else if (resultResponse.error !== '') {
+          const latestImage = parseInt(resultResponse.error.error.match(/(?:\D*(\d+)){3}/)[1], 10);
+          console.log('latestImage', latestImage);
+          this.setState({
+            hasResult: true,
+            hasCounter: true,
+          });
+        } else {
+          this.setState({
+            hasResult: false,
+            hasCounter: false,
+          });
+        }
       } catch (error) {
         this.setState({
           hasResult: false,
+          hasCounter: false,
         });
       }
     };
 
     const {
       hasResult,
+      hasCounter,
       resultImage,
       defaultImage,
       value,
@@ -56,6 +76,7 @@ class App extends Component {
           ? (
             <Result
               resultImage={resultImage}
+              hasCounter={hasCounter}
             />
           )
           : (
