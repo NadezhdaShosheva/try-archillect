@@ -34,27 +34,51 @@ describe('getImage', () => {
     expect(mockAxios.get).toHaveBeenCalledWith(expectedGetPath);
   });
 
-  test('getImage - image does not exist', async () => {
-    // Arrange
-    const expectedImageId = 12345678;
-    const expectedLatestImageId = 199565;
-    const expectedGetPath = `${BASE_URL}/${expectedImageId}`;
-    const expectedError = {
-      error: `The id ${expectedImageId} should be between 1 and ${expectedLatestImageId}`,
-    };
-    const expectedResponse = {
-      data: expectedError,
-    };
-    mockAxios.get = jest.fn(() => new Promise((resolve) => {
-      resolve(expectedResponse);
-    }));
+  describe('getImage - image does not exist', () => {
+    test('getImage - image does not exist yet', async () => {
+      // Arrange
+      const expectedImageId = 12345678;
+      const expectedLatestImageId = 200081;
+      const expectedGetPath = `${BASE_URL}/${expectedImageId}`;
+      const expectedError = {
+        error: `The id ${expectedImageId} should be between 1 and ${expectedLatestImageId}`,
+      };
+      const expectedResponse = {
+        data: expectedError,
+      };
+      mockAxios.get = jest.fn(() => new Promise((resolve) => {
+        resolve(expectedResponse);
+      }));
 
-    // Act
-    const actualError = await getImage(expectedImageId);
+      // Act
+      const actualError = await getImage(expectedImageId);
 
-    // Assets
-    expect(actualError).toEqual(expectedError);
-    expect(mockAxios.get).toHaveBeenCalledWith(expectedGetPath);
+      // Assets
+      expect(actualError).toEqual(expectedError);
+      expect(mockAxios.get).toHaveBeenCalledWith(expectedGetPath);
+    });
+
+    test('getImage - image not found', async () => {
+      // Arrange
+      const expectedImageId = 6565;
+      const expectedGetPath = `${BASE_URL}/${expectedImageId}`;
+      const expectedError = {
+        error: undefined,
+      };
+      const expectedResponse = {
+        data: expectedError,
+      };
+      mockAxios.get = jest.fn(() => new Promise((resolve) => {
+        resolve(expectedResponse);
+      }));
+
+      // Act
+      const actualError = await getImage(expectedImageId);
+
+      // Assets
+      expect(actualError).toEqual(expectedError);
+      expect(mockAxios.get).toHaveBeenCalledWith(expectedGetPath);
+    });
   });
 
   test('getImage - rejected', async () => {

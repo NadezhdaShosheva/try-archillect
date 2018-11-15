@@ -12,22 +12,35 @@ const Nav = styled.nav`
   top: 0;
   right: 0;
   left: 0;
-  padding: 10px 20px;
+  padding: 15px 50px;
   background-color: #f2f2f2;
-  top:
+
+  a {
+    display: inline-block;
+    padding: 3px 10px;
+    color: #333;
+    font-size: 16px;
+    text-decoration: none;
+
+    &:hover {
+      color: #666;
+    }
+
+    &.active {
+      color: #000;
+    }
+  }
 `;
 
 const Dashboard = () => (
   <Wrapper>
     <Nav>
       <NavLink
-        className="main-anchor"
         to="/home"
       >
         Home
       </NavLink>
       <NavLink
-        className="main-anchor"
         to="/about"
       >
         About

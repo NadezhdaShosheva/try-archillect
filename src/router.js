@@ -1,12 +1,15 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Route, Redirect, Switch } from 'react-router';
 import Home from './views/home';
 import About from './views/about';
 
 const Router = () => (
   <div>
-    <Route path="/home" component={Home} />
-    <Route path="/about" component={About} />
+    <Switch>
+      <Redirect exact from="/" to="/home" />
+      <Route path="/home" component={Home} />
+      <Route path="/about" component={About} />
+    </Switch>
   </div>
 );
 
