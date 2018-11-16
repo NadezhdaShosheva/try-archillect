@@ -1,9 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import Router from './router';
+import Router from './Router';
 
 const Wrapper = styled.div`
+  width: 100%;
   padding: 50px 30px 0;
 `;
 
@@ -19,20 +20,20 @@ const Nav = styled.nav`
     display: inline-block;
     padding: 3px 10px;
     color: #333;
-    font-size: 16px;
+    font-size: 17px;
     text-decoration: none;
 
     &:hover {
-      color: #666;
+      opacity: .7;
     }
 
     &.active {
-      color: #000;
+      color: #007fb8;
     }
   }
 `;
 
-const Dashboard = () => (
+const Navigation = () => (
   <Wrapper>
     <Nav>
       <NavLink
@@ -52,4 +53,4 @@ const Dashboard = () => (
   </Wrapper>
 );
 
-export default Dashboard;
+export default Navigation;

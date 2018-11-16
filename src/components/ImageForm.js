@@ -37,8 +37,8 @@ const Button = styled.button`
   white-space: nowrap;
   vertical-align: middle;
   user-select: none;
-  border: 1px solid transparent;
-  background-color: #5c739c;
+  border: 1px solid #007fb8;
+  background-color: #007fb8;
   color: #fff;
   font-size: 17px;
   border-radius: 20px;
