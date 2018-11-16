@@ -36,7 +36,7 @@ const Dashboard = () => (
   <Wrapper>
     <Nav>
       <NavLink
-        to="/home"
+        to="/try-archillect"
       >
         Home
       </NavLink>

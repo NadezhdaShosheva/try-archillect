@@ -6,8 +6,8 @@ import About from './views/about';
 const Router = () => (
   <div>
     <Switch>
-      <Redirect exact from="/" to="/home" />
-      <Route path="/home" component={Home} />
+      <Redirect exact from="/" to="/try-archillect" />
+      <Route path="/try-archillect" component={Home} />
       <Route path="/about" component={About} />
     </Switch>
   </div>
