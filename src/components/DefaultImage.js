@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import image from '../default.gif';
 
 const ImagePreview = styled.div`
   height: 400px;
@@ -13,21 +13,13 @@ const ImagePreview = styled.div`
   }
 `;
 
-const DefaultImage = (props) => {
-  const { defaultImage } = props;
-
-  return (
-    <ImagePreview>
-      <img
-        src={defaultImage}
-        alt="default"
-      />
-    </ImagePreview>
-  );
-};
-
-DefaultImage.propTypes = {
-  defaultImage: PropTypes.string.isRequired,
-};
+const DefaultImage = () => (
+  <ImagePreview>
+    <img
+      src={image}
+      alt="default"
+    />
+  </ImagePreview>
+);
 
 export default DefaultImage;
