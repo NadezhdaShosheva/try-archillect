@@ -26,6 +26,7 @@ class Home extends Component {
       hasResult,
       hasCounter,
       resultImage,
+      timeLeft,
       onGetImageUrl,
       onDoesNotExistImage,
       onDeafultState,
@@ -48,8 +49,9 @@ class Home extends Component {
           onGetImageUrl(resultResponse.url);
         } else if (resultResponse.error !== '') {
           const latestImage = parseInt(resultResponse.error.match(/(?:\D*(\d+)){3}/)[1], 10);
-          const period = latestImage - value;
-          onDoesNotExistImage(period);
+          const currentDate = new Date();
+          const resultEndDate = parseInt((currentDate.getTime() + (value - latestImage) * 24 * 60 * 60 * 1000), 10);
+          onDoesNotExistImage(resultEndDate);
         } else {
           onDeafultState();
         }
@@ -65,6 +67,7 @@ class Home extends Component {
             <Result
               resultImage={resultImage}
               hasCounter={hasCounter}
+              timeLeft={timeLeft}
             />
           )
           : (
@@ -83,6 +86,7 @@ class Home extends Component {
 
 Home.propTypes = {
   resultImage: PropTypes.string.isRequired,
+  timeLeft: PropTypes.number.isRequired,
   hasCounter: PropTypes.bool.isRequired,
   hasResult: PropTypes.bool.isRequired,
   onGetImageUrl: PropTypes.func.isRequired,
@@ -92,13 +96,14 @@ Home.propTypes = {
 
 const mapStateToProps = state => ({
   resultImage: state.resultImage,
+  timeLeft: state.timeLeft,
   hasResult: state.hasResult,
   hasCounter: state.hasCounter,
 });
 
 const mapDispatchToProps = dispatch => ({
   onGetImageUrl: imageUrl => dispatch({ type: actionTypes.GET_IMAGE_URL, imageUrl }),
-  onDoesNotExistImage: period => dispatch({ type: actionTypes.IMAGE_DOES_NOT_EXIST, period }),
+  onDoesNotExistImage: timeLeft => dispatch({ type: actionTypes.IMAGE_DOES_NOT_EXIST, timeLeft }),
   onDeafultState: () => dispatch({ type: actionTypes.DEFAULT_STATE }),
 });
 

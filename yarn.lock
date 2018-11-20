@@ -6952,6 +6952,10 @@ react-dom@^16.6.0:
     prop-types "^15.6.2"
     scheduler "^0.11.2"
 
+react-downcount@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-downcount/-/react-downcount-1.0.2.tgz#8d454ef3785f0ade7b3a0d475a3c620acf71fa71"
+
 react-error-overlay@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.0.tgz#c516995a5652e7bfbed8b497910d5280df74a7e8"

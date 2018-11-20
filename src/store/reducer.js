@@ -2,7 +2,7 @@ import * as actionTypes from './actions';
 
 const initialState = {
   resultImage: '',
-  period: '',
+  timeLeft: 0,
   hasResult: false,
   hasCounter: false,
 };
@@ -20,9 +20,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.IMAGE_DOES_NOT_EXIST:
       return {
         ...state,
-        period: action.period,
         hasResult: true,
         hasCounter: true,
+        timeLeft: action.timeLeft,
       };
 
     case actionTypes.DEFAULT_STATE:
