@@ -69,7 +69,7 @@ const About = () => {
         <strong>Brings one visual [ID] specified</strong>
       </SubHeader>
       <LineBordered>GET https://archillect-api.now.sh/visuals/[ID]</LineBordered>
-      <Line>Example esponse:</Line>
+      <Line>Example response:</Line>
       <Code>
         <code>{code}</code>
       </Code>
