@@ -1,6 +1,4 @@
-import * as actionTypes from './actions';
-
-const initialState = {
+export const initialState = {
   resultImage: '',
   timeLeft: 0,
   hasResult: false,
@@ -9,7 +7,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.GET_IMAGE_URL:
+    case 'GET_IMAGE_URL':
       return {
         ...state,
         resultImage: action.imageUrl,
@@ -17,7 +15,7 @@ const reducer = (state = initialState, action) => {
         hasCounter: false,
       };
 
-    case actionTypes.IMAGE_DOES_NOT_EXIST:
+    case 'IMAGE_DOES_NOT_EXIST':
       return {
         ...state,
         hasResult: true,
@@ -25,7 +23,7 @@ const reducer = (state = initialState, action) => {
         timeLeft: action.timeLeft,
       };
 
-    case actionTypes.DEFAULT_STATE:
+    case 'DEFAULT_STATE':
       return {
         ...state,
         hasResult: false,

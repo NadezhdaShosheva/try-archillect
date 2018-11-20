@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as actionTypes from '../store/actions';
 import ImageForm from '../components/ImageForm';
 import DefaultImage from '../components/DefaultImage';
 import Result from '../components/Result';
@@ -102,9 +101,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onGetImageUrl: imageUrl => dispatch({ type: actionTypes.GET_IMAGE_URL, imageUrl }),
-  onDoesNotExistImage: timeLeft => dispatch({ type: actionTypes.IMAGE_DOES_NOT_EXIST, timeLeft }),
-  onDeafultState: () => dispatch({ type: actionTypes.DEFAULT_STATE }),
+  onGetImageUrl: imageUrl => dispatch({ type: 'GET_IMAGE_URL', imageUrl }),
+  onDoesNotExistImage: timeLeft => dispatch({ type: 'IMAGE_DOES_NOT_EXIST', timeLeft }),
+  onDeafultState: () => dispatch({ type: 'DEFAULT_STATE' }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
