@@ -1,6 +1,6 @@
 describe('reducer', () => {
-  const reducerStore = require('./reducer');
-  const reducer = require('./reducer').default;
+  const reducerStore = require('../reducer');
+  const reducer = require('../reducer').default;
   const { initialState } = reducerStore;
 
   test('reducer - GET_IMAGE_URL', () => {
@@ -9,8 +9,6 @@ describe('reducer', () => {
     const expectedResultImage = imageUrl;
     const expectedHasResult = true;
     const expectedHasCounter = false;
-
-     initialState;
 
     const action = {
       type: 'GET_IMAGE_URL',
